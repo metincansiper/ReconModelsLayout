@@ -1,0 +1,28 @@
+{
+  "name": "reconmodelslayout",
+  "version": "1.0.0",
+  "description": "A nodejs script that query recon models, perform layout on them and saves the results to JSON files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metincansiper/ReconModelsLayout.git"
+  },
+  "author": "metincansiper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/metincansiper/ReconModelsLayout/issues"
+  },
+  "homepage": "https://github.com/metincansiper/ReconModelsLayout#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "cytoscape": "^3.2.11",
+    "cytoscape-cose-bilkent": "^4.0.0",
+    "eslint": "^4.19.1",
+    "fs": "0.0.1-security",
+    "soap": "^0.23.0",
+    "xml2js": "^0.4.19"
+  }
+}
