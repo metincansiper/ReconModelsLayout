@@ -1,7 +1,10 @@
+const { LAYOUT_NAME } = require('../config.js');
 const layoutOpts = Object.freeze({
-  name: 'cose-bilkent', // see if it will work for cose-bilkent
+  name: LAYOUT_NAME, // see if it will work for cose-bilkent
   animate: false
 });
+
+console.log(LAYOUT_NAME);
 
 let getLayout = (cy) => {
   return cy.layout(layoutOpts);

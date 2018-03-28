@@ -19,6 +19,7 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "cytoscape": "^3.2.11",
+    "cytoscape-cola": "^2.2.0",
     "cytoscape-cose-bilkent": "^4.0.0",
     "eslint": "^4.19.1",
     "fs": "0.0.1-security",

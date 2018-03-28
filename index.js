@@ -29,6 +29,8 @@ let processModels = (index) => {
       exportToJson(cyJson, modelID);
       // pass to the next model
       processModels(index + 1);
+
+      console.log('layout stop');
     };
 
     console.log('running layout for ' + cy.nodes().length + ' nodes');
