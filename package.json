@@ -20,7 +20,7 @@
     "bluebird": "^3.5.1",
     "cytoscape": "^3.2.11",
     "cytoscape-cola": "^2.2.0",
-    "cytoscape-cose-bilkent": "^4.0.0",
+    "cytoscape-cose-bilkent": "github:metincansiper/cytoscape.js-cose-bilkent#temp-headless-fix",
     "eslint": "^4.19.1",
     "fs": "0.0.1-security",
     "soap": "^0.23.0",
