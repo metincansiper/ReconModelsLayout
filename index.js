@@ -2,7 +2,7 @@ const { readModelIds } = require('./util/models.js');
 const { queryReconGraphData } = require('./util/queryReconService');
 const regCyExt = require('./util/regCyExt');
 const { createNewCy, updateEles } = require('./util/cyInstance');
-const exportToJson = require('./util/exportToJson');
+const { exportToJson } = require('./util/toJson');
 const { getLayout, runLayout, bindLayoutEvent } = require('./util/layout');
 const xmlStrToCyJson = require('./util/xmlStrToCyJson');
 
@@ -26,7 +26,7 @@ let processModels = (index) => {
     let layout = getLayout(cy);
 
     let onLayoutStop = () => {
-      exportToJson(cyJson, modelID);
+      exportToJson(cy, modelID);
       // pass to the next model
       processModels(index + 1);
 
