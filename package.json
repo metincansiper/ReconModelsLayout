@@ -23,6 +23,7 @@
     "cytoscape-cose-bilkent": "github:metincansiper/cytoscape.js-cose-bilkent#temp-headless-fix",
     "eslint": "^4.19.1",
     "fs": "0.0.1-security",
+    "fs-path": "0.0.24",
     "soap": "^0.23.0",
     "xml2js": "^0.4.19"
   }

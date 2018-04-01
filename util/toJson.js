@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-path');
 
 // uses original data fields of elements does not use copy of them
 let getElementsJson = (cy) => {
