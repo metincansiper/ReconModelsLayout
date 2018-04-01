@@ -34,13 +34,9 @@ let exportToJson = (cy, modelId) => {
   let elementsData = getElementsJson(cy);
   let fileContent = JSON.stringify(elementsData);
 
-  fs.writeFile(filePath, fileContent, (err) => {
-    if(err) {
-      return console.log(err);
-    }
-
-    console.log("The file was saved for " + modelId);
-  });
+  // write to file in sync mode to enable destroying cytoscape instance on correct time
+  fs.writeFileSync(filePath, fileContent);
+  console.log("The file was saved for " + modelId);
 }
 
 module.exports = { exportToJson };

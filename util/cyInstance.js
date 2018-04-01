@@ -1,7 +1,17 @@
 const cytoscape = require('cytoscape');
 
-let createNewCy = (opts = {}) => {
-  let cy = this.cy = cytoscape(opts);
+let createNewCy = () => {
+  let opts = {
+    style: cytoscape.stylesheet()
+    .selector('node:childless')
+      .style({
+        'width': 'data(width)',
+        'height': 'data(height)'
+      }),
+    styleEnabled: true,
+    headless: true
+  };
+  let cy = cytoscape(opts);
   return cy;
 };
 

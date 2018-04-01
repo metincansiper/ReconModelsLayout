@@ -13,13 +13,14 @@ let modelIDs = readModelIds();
 // process models starting from index
 let processModels = (index) => {
   if (index === modelIDs.length) {
+    console.log('all models are processed');
+    cy.destroy(); // this is needed to finish script if cyEnabled option of cy is set
     return;
   }
 
   let modelID = modelIDs[index];
 
   queryReconGraphData(modelID).then( (xmlStr) => {
-
     let cyJson = xmlStrToCyJson(xmlStr);
     updateEles(cy, cyJson);
 
@@ -27,10 +28,11 @@ let processModels = (index) => {
 
     let onLayoutStop = () => {
       exportToJson(cy, modelID);
+
+      console.log('layout stopped');
+
       // pass to the next model
       processModels(index + 1);
-
-      console.log('layout stop');
     };
 
     console.log('running layout for ' + cy.nodes().length + ' nodes');

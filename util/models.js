@@ -6,8 +6,11 @@ let readModelIds = (filePath = 'input/modelIDs.csv') => {
   let modelIDs = [];
 
   for (var i = 0; i < lines.length; i++) {
-    var data = lines[i].split(',');
-    modelIDs.push(data[0]);
+    let data = lines[i].split(',');
+    let modelId = data[0];
+    if(modelId !== '') {
+      modelIDs.push(modelId);
+    }
   }
 
   return modelIDs;

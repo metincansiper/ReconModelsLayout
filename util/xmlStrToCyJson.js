@@ -1,9 +1,13 @@
 const parseString = require('xml2js').parseString;
 
+// width and height for simple nodes
+const SIMPLE_NODE_WIDTH = 30;
+const SIMPLE_NODE_HEIGHT = 30;
+
 let xmlStrToCyJson = (xmlStr) => {
   // JSON object to load the graph to Cytoscape.js
   let cytoscapeJsGraph = {};
-  
+
   parseString(xmlStr, (err, result) => {
     // JSON arrays for nodes and edges
     let cytoscapeJsNodes = [];
@@ -70,7 +74,9 @@ let xmlStrToCyJson = (xmlStr) => {
               boundaryCondition: $species.BoundaryCondition,
               charge: $species.Charge,
               constant: $species.Constant,
-              isCommon: $species.IsCommon
+              isCommon: $species.IsCommon,
+              width: SIMPLE_NODE_WIDTH,
+              height: SIMPLE_NODE_HEIGHT
             }
           });
 
@@ -136,7 +142,9 @@ let xmlStrToCyJson = (xmlStr) => {
           reversible: reversible,
           sbmlId: $reaction.sbmlId,
           kineticLawId: $reaction.KineticLawId,
-          fast: $reaction.Fast
+          fast: $reaction.Fast,
+          width: SIMPLE_NODE_WIDTH,
+          height: SIMPLE_NODE_HEIGHT
         }
       });
     } );
