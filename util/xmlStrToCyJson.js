@@ -92,7 +92,7 @@ let xmlStrToCyJson = (xmlStr) => {
 
       let reactionId = $reaction.ID;
       let reversible = $reaction.reversible;
-      let compartmentId;
+      let reactantCompartmentId, productCompartmentId;
 
       //Get edge data by reaction species
       reaction.ReactionSpeciesAll.forEach( (speciesAll) => {
@@ -105,12 +105,12 @@ let xmlStrToCyJson = (xmlStr) => {
           let edgeId = $species.ID;
           let stoichiometry = $species.Stoichiometry;
 
-          //Reactions are in the same compartment with their input species
-          if (!compartmentId) {
-            if (roleId === 'Reactant') {
-              //Get the compartment of that species
-              compartmentId = speciesIdToCompartmentIdMap.get(speciesId);
-            }
+          // set reactantCompartmentId or productCompartmentId according to role of species in reaction
+          if (!reactantCompartmentId && roleId === 'Reactant') {
+            reactantCompartmentId = speciesIdToCompartmentIdMap.get(speciesId);
+          }
+          else if(!productCompartmentId && roleId === 'Product') {
+            productCompartmentId = speciesIdToCompartmentIdMap.get(speciesId);
           }
 
           let sourceId, targetId;
@@ -132,6 +132,11 @@ let xmlStrToCyJson = (xmlStr) => {
           });
         } );
       } );
+
+      // Reactions are ideally in the same compartment with their input(reactant) species
+      // but we are supposed to put them with the same compartement of their output(product) speciesId
+      // if we have no information about input species
+      let compartmentId = reactantCompartmentId || productCompartmentId;
 
       cytoscapeJsNodes.push({
         data: {
