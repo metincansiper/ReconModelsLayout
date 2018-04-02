@@ -8,6 +8,10 @@ let queryReconGraphData = (modelId) => {
   return new Promise( ( resolve, reject ) => {
     soap.createClient(url, function(err, client) {
       client.GetReconGraphData(args, function(err, res) {
+        if (err) {
+          reject(err);
+        }
+
         // result is expected to have only one property return its value
         for (var prop in res) {
           resolve(res[prop]);
