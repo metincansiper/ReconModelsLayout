@@ -1,11 +1,15 @@
 const fs = require('fs');
+const { MODEL_IDS_PATH, MODEL_IDS_START, MODEL_IDS_END } = require('../config');
 
-let readModelIds = (filePath = 'input/modelIDs.csv') => {
+let readModelIds = (filePath = MODEL_IDS_PATH) => {
   let allText = fs.readFileSync(filePath).toString();
   let lines = allText.split(/\r\n|\n/);
   let modelIDs = [];
 
-  for (var i = 0; i < lines.length; i++) {
+  let start = MODEL_IDS_START || 0;
+  let end = MODEL_IDS_END || lines.length;
+
+  for (var i = start; i < end; i++) {
     let data = lines[i].split(',');
     let modelId = data[0];
     if(modelId !== '') {
