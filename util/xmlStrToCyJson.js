@@ -1,4 +1,5 @@
 const parseString = require('xml2js').parseString;
+const _ = require('lodash');
 
 // width and height for simple nodes
 const SIMPLE_NODE_WIDTH = 30;
@@ -18,7 +19,7 @@ let xmlStrToCyJson = (xmlStr) => {
     cytoscapeJsGraph.nodes = cytoscapeJsNodes;
     cytoscapeJsGraph.edges = cytoscapeJsEdges;
 
-    let compartments = result.SBModel.Compartments[0].Compartment;
+    let compartments = _.get(result, 'SBModel.Compartments[0].Compartment', []);
 
     //Search in compartents
     compartments.forEach( (compartment) => {
@@ -48,8 +49,8 @@ let xmlStrToCyJson = (xmlStr) => {
       });
 
       //Search in species of that compartment
-      compartment.SpeciesAll.forEach( (speciesAll) => {
-        let speciesList = speciesAll.Species;
+      _.get(compartment, 'SpeciesAll', []).forEach( (speciesAll) => {
+        let speciesList = _.get(speciesAll, 'Species', []);
 
         speciesList.forEach( (species) => {
           let $species = species.$;
@@ -84,7 +85,7 @@ let xmlStrToCyJson = (xmlStr) => {
       } );
     } );
 
-    let reactions = result.SBModel.Reactions[0].Reaction;
+    let reactions = _.get(result, 'SBModel.Reactions[0].Reaction', []);
 
     //Search in reactions
     reactions.forEach( (reaction) => {
@@ -95,8 +96,8 @@ let xmlStrToCyJson = (xmlStr) => {
       let reactantCompartmentId, productCompartmentId;
 
       //Get edge data by reaction species
-      reaction.ReactionSpeciesAll.forEach( (speciesAll) => {
-        let speciesList = speciesAll.ReactionSpecies;
+      _.get(reaction, 'ReactionSpeciesAll', []).forEach( (speciesAll) => {
+        let speciesList = _.get(speciesAll, 'ReactionSpecies', []);
         speciesList.forEach( (species) => {
           let $species = species.$;
 
