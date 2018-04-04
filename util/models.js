@@ -2,6 +2,8 @@ const fs = require('fs');
 const { MODEL_IDS_PATH, MODEL_IDS_START, MODEL_IDS_END } = require('../config');
 
 let readModelIds = (filePath = MODEL_IDS_PATH) => {
+  console.log('Reading models at ', filePath);
+  
   let allText = fs.readFileSync(filePath).toString();
   let lines = allText.split(/\r\n|\n/);
   let modelIDs = [];
