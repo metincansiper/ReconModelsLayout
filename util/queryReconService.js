@@ -7,6 +7,11 @@ let queryReconGraphData = (modelId) => {
 
   return new Promise( ( resolve, reject ) => {
     soap.createClient(url, function(err, client) {
+
+      if (!client) {
+        reject('Soap client could not be created while trying to query model ', modelId);
+      }
+
       client.GetReconGraphData(args, function(err, res) {
         if (err) {
           reject(err);

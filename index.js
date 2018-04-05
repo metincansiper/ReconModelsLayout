@@ -42,7 +42,15 @@ let processModels = (index) => {
     console.log('running layout for ' + cy.nodes().length + ' nodes');
 
     bindLayoutEvent(layout, 'layoutstop', onLayoutStop);
-    runLayout(layout);
+
+    try {
+      runLayout(layout);
+    }
+    catch (err) {
+      console.log('Error is caught during layout ', err);
+      // skipp the model if encountered an error during layout
+      processModels(index + 1);
+    }
   };
 
   // error callback for query graph service
